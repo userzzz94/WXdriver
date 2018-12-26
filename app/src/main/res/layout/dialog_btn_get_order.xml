@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_x250"
+    android:orientation="vertical"
+    android:background="@drawable/border">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_x100"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+    <TextView
+        android:id="@+id/tvDialogMakeTitle"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:textSize="18sp"
+        android:gravity="center"/>
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_x60"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:layout_marginRight="@dimen/dp_x20"
+            android:background="@drawable/border"/>
+    </LinearLayout>
+   
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_x60"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/dp_x50"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/dp_x50">
+        <Button
+            android:id="@+id/tvDialogMakeSureNO"
+            style="@style/dialog_get_order_btn"
+            android:layout_marginRight="@dimen/dp_x15"/>
+
+        <Button
+            android:id="@+id/tvDialogMakeSureYes"
+            style="@style/dialog_get_order_btn"
+            android:layout_marginLeft="@dimen/dp_x15"/>
+    </LinearLayout>
+</LinearLayout>

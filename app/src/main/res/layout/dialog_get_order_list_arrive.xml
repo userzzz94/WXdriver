@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvDialogArriveMakeTitle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_x100"
+        android:textSize="18sp"
+        android:gravity="center"/>
+    <View
+        style="@style/lightGray_LineView"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_x80"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tvDialogArriveMakeSureNO"
+            style="@style/dialog_arrive_txt"/>
+        <View
+            android:id="@+id/vDialogMakeLine"
+            style="@style/lightGray_vertical_LineView"/>
+        <TextView
+            android:id="@+id/tvDialogArriveMakeSureYes"
+            style="@style/dialog_arrive_txt"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mian_driver"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="demo.wanxiang.zzz.com.wxdriver.MainActivity">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/mian_driver_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="1">
+    </android.support.v4.view.ViewPager>
+
+        <!-- 这里可以添加一条间隔线 -->
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@color/gray_color1" />
+
+        <RadioGroup
+            android:id="@+id/main_driver_radiogroup"
+            style="@style/activity_main_radiogroup_style">
+
+            <RadioButton
+                android:id="@+id/main_driver_function_radiobutton"
+                style="@style/activity_main_radiobutton_style"
+                android:text="司机主页"
+                android:textSize="10sp"/>
+
+            <RadioButton
+                android:id="@+id/main_driver_center_radiobutton"
+                style="@style/activity_main_radiobutton_style"
+                android:text="个人中心"
+                android:textSize="10sp"/>
+        </RadioGroup>
+
+</LinearLayout>

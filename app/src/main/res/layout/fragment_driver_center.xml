@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_driver_center_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:background="@drawable/homepage" />
+
+    <LinearLayout style="@style/center_item_view"
+        android:id="@+id/driver_my_route_change"
+        android:clickable="true">
+
+        <TextView
+            style="@style/center_item_TextView"
+            android:text="线路承运商变更" />
+
+        <ImageView
+            style="@style/center_item_ImageView"
+            android:background="@drawable/arrow_into" />
+    </LinearLayout>
+
+    <View style="@style/lightGray_LineView" />
+
+    <LinearLayout style="@style/center_item_view"
+        android:id="@+id/driver_my_change_info"
+        android:clickable="true">
+
+        <TextView
+            style="@style/center_item_TextView"
+            android:text="修改个人信息" />
+
+        <ImageView
+            style="@style/center_item_ImageView"
+            android:background="@drawable/arrow_into" />
+    </LinearLayout>
+
+    <View style="@style/lightGray_LineView" />
+
+    <LinearLayout style="@style/center_item_view"
+        android:id="@+id/driver_my_change_pwd"
+        android:clickable="true">
+
+        <TextView
+            style="@style/center_item_TextView"
+            android:text="修改密码" />
+
+        <ImageView
+            style="@style/center_item_ImageView"
+            android:background="@drawable/arrow_into" />
+    </LinearLayout>
+
+    <View style="@style/lightGray_LineView" />
+
+    <LinearLayout style="@style/center_item_view"
+        android:id="@+id/driver_my_about"
+        android:clickable="true">
+
+        <TextView
+            style="@style/center_item_TextView"
+            android:text="关于" />
+
+        <ImageView
+            style="@style/center_item_ImageView"
+            android:background="@drawable/arrow_into" />
+    </LinearLayout>
+
+    <View style="@style/lightGray_LineView" />
+
+    <LinearLayout style="@style/center_item_view"
+        android:id="@+id/driver_my_quit"
+        android:clickable="true">
+
+        <TextView
+            style="@style/center_item_TextView"
+            android:text="退出" />
+
+        <ImageView
+            style="@style/center_item_ImageView"
+            android:background="@drawable/arrow_into" />
+    </LinearLayout>
+
+    <View style="@style/lightGray_LineView" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3" />
+
+
+</LinearLayout>

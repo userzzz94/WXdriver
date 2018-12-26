@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="demo.wanxiang.zzz.com.wxdriver.function_activity.routeChangeActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/white">
+        <TextView
+            style="@style/activity_title_txt_style"
+            android:text="@string/driver_block5"
+            android:layout_marginLeft="@dimen/dp_x50"/>
+        <ImageView
+            android:id="@+id/ivRouteChangeListAdd"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_x100"
+            android:layout_weight="1"
+            android:background="@drawable/icon_add"
+            android:visibility="visible"/>
+    </LinearLayout>
+    <View
+        style="@style/lightGray_LineView"/>
+
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:id="@+id/pager_route_change_xrecyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.jcodecraeer.xrecyclerview.XRecyclerView>
+
+</LinearLayout>

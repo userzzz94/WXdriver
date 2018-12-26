@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">万象物流（司机端）</string>
+    <string name="security_block1">铅封解封</string>
+    <string name="security_block2">已解封</string>
+    <string name="security_about">关于</string>
+    <string name="security_center">个人信息</string>
+    <string name="driver_block1">推送任务</string>
+    <string name="driver_block2">已接单</string>
+    <string name="driver_block3">已完成</string>
+    <string name="driver_block4">承运商管理</string>
+    <string name="driver_block5">管控线路所属承运商申请变更</string>
+    <string name="main_driver_radiobutton1"></string>
+</resources>
