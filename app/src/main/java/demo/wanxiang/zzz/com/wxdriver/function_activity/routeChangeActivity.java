@@ -1,11 +1,14 @@
 package demo.wanxiang.zzz.com.wxdriver.function_activity;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +16,27 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.Response;
+import com.orhanobut.hawk.Hawk;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import demo.wanxiang.zzz.com.wxdriver.LoginActivity;
 import demo.wanxiang.zzz.com.wxdriver.R;
+import demo.wanxiang.zzz.com.wxdriver.bean.ChangeCarInfoBean;
+import demo.wanxiang.zzz.com.wxdriver.center_activity.ChangeCarInfoActivity;
 import demo.wanxiang.zzz.com.wxdriver.utils.BaseActivity;
+import demo.wanxiang.zzz.com.wxdriver.utils.ToastUtils;
+import demo.wanxiang.zzz.com.wxdriver.utils.UrlUtil;
 
 public class routeChangeActivity extends BaseActivity implements View.OnClickListener {
 
@@ -27,6 +44,8 @@ public class routeChangeActivity extends BaseActivity implements View.OnClickLis
     private XRecyclerView xRecyclerView;
     private List<ArrayList> list;
     private RouteChangeAdapter adapter;
+
+    private String change_reason;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -82,7 +101,8 @@ public class routeChangeActivity extends BaseActivity implements View.OnClickLis
                 TextView tvDialogMakeTitle = layoutView.findViewById(R.id.tvDialogRouteChangeMakeTitle);
                 TextView tvDialogMakeSureNO = layoutView.findViewById(R.id.tvDialogRouteChangeMakeSureNO);
                 TextView tvDialogMakeSureYes = layoutView.findViewById(R.id.tvDialogRouteChangeMakeSureYes);
-                EditText etDialogMakeReason = layoutView.findViewById(R.id.etDialogRouteChangeReason);
+                final EditText etDialogMakeReason = layoutView.findViewById(R.id.etDialogRouteChangeReason);
+
                 tvDialogMakeTitle.setText("承运商：");
                 tvDialogMakeSureNO.setText("取消");
                 tvDialogMakeSureYes.setText("提交");
@@ -99,7 +119,13 @@ public class routeChangeActivity extends BaseActivity implements View.OnClickLis
                     @Override
                     public void onClick(View v) {
                         //点击提交 申请变更接口
-                        alertDialog.cancel();
+                        change_reason=  etDialogMakeReason.getText().toString().trim();
+                        if("".equals( change_reason )){
+                           ToastUtils.getInstance( routeChangeActivity.this ).showToast( "请输入变更原因" );
+                        }else {
+                            requestNet_Change();
+                            alertDialog.cancel();
+                        }
                     }
                 });
                 break;
@@ -163,6 +189,44 @@ public class routeChangeActivity extends BaseActivity implements View.OnClickLis
             }
         }
 
+    }
+
+    //申请变更
+    private void requestNet_Change() {
+        final ProgressDialog progressDialog = ProgressDialog.show(routeChangeActivity.this,"","请稍后······");
+        OkGo. <String>post( UrlUtil.URL_Prefix + "driverapi/carApply" )
+                .params("userId", String.valueOf( Hawk.get("userID") ) )
+                .params( "licenseplate", String.valueOf( Hawk.get("Licenseplate") ) )
+                .params("reason",change_reason)
+                .execute( new StringCallback() {
+                    @Override
+                    public void onSuccess(Response <String> response) {
+                        progressDialog.cancel();
+                        Gson gson=new Gson();
+                        ChangeCarInfoBean result=gson.fromJson( response.body(), ChangeCarInfoBean.class );
+                        if (result.isSuccess()) {// 信息更改成功
+                            AlertDialog.Builder builder = new AlertDialog.Builder(routeChangeActivity.this);
+                            builder.setTitle("提示")
+                                    .setMessage("线控所属承运商更改申请已提交！")
+                                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.cancel();
+                                        }
+                                    }).create().show();
+                        } else {
+                            ToastUtils.getInstance( routeChangeActivity.this ).showToast( result.getMsg() );
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError( response );
+                        progressDialog.cancel();
+                        ToastUtils.getInstance( routeChangeActivity.this ).showToast( response.toString() );
+                    }
+                } );
     }
 
 }

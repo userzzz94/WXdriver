@@ -20,6 +20,7 @@ import com.orhanobut.hawk.Hawk;
 import demo.wanxiang.zzz.com.wxdriver.LoginActivity;
 import demo.wanxiang.zzz.com.wxdriver.R;
 import demo.wanxiang.zzz.com.wxdriver.center_activity.AboutActivity;
+import demo.wanxiang.zzz.com.wxdriver.center_activity.ChangeCarInfoActivity;
 import demo.wanxiang.zzz.com.wxdriver.center_activity.ChangePwdActivity;
 import demo.wanxiang.zzz.com.wxdriver.function_activity.getOrderListActivity;
 import demo.wanxiang.zzz.com.wxdriver.function_activity.routeChangeActivity;
@@ -60,7 +61,7 @@ public class DriverCenterFragment extends Fragment {
             View myInfo = mView.findViewById(R.id.driver_my_change_info);
             myInfo.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Intent intent_myInfo=new Intent( getActivity(), getOrderListActivity.class );
+                    Intent intent_myInfo=new Intent( getActivity(), ChangeCarInfoActivity.class );
                     startActivity( intent_myInfo );
 
                 }

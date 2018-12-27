@@ -157,9 +157,15 @@ public class MyOrderUndoFragment extends Fragment {
                 public void onClick(View v) {
                     int position = holder.getAdapterPosition() - 1;
                     Log.e("sweep", myOrderList.get(position).getWaybill().getTransporplan().getCustomer());
-                    Intent intent = new Intent(getActivity(),UnloadCarActivity.class);
-                    //intent.putExtra("orderNumber",myOrderList.get(position).getBh());
-                    startActivity(intent);
+                    int state=mMyOrderList.get(position).getState();
+                    int sealState=mMyOrderList.get( position ).getWaybill().getTransporplan().getLeadsealing();
+                    if( (sealState==1&&state>=30)|| (sealState==0&&state>=20) ) {
+                        Intent intent=new Intent( getActivity(), UnloadCarActivity.class );
+                        //intent.putExtra("orderNumber",myOrderList.get(position).getBh());
+                        startActivity( intent );
+                    }else{
+                        ToastUtils.getInstance(getActivity()).showToast("订单状态不可进行卸车");
+                    }
                 }
             });
 
@@ -168,13 +174,20 @@ public class MyOrderUndoFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     int position=holder.getAdapterPosition() - 1;
-                    if (ContextCompat.checkSelfPermission( getActivity(), Manifest.permission.CAMERA ) != PackageManager.PERMISSION_GRANTED) {
+                    //判断state
+                    int state=mMyOrderList.get(position).getState();
+                    if(state==1){
+                        if (ContextCompat.checkSelfPermission( getActivity(), Manifest.permission.CAMERA ) != PackageManager.PERMISSION_GRANTED) {
 
-                        ActivityCompat.requestPermissions( getActivity(), new String[]{Manifest.permission.CAMERA}, 1 );
+                            ActivityCompat.requestPermissions( getActivity(), new String[]{Manifest.permission.CAMERA}, 1 );
 
-                    } else {
-                        jumpScanPage();
+                        } else {
+                            jumpScanPage();
+                        }
+                    } else{
+                        ToastUtils.getInstance(getActivity()).showToast("订单状态不可进行扫码");
                     }
+
                 }
             } );
 

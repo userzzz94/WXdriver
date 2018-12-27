@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">万象物流（司机端）</string>
+    <string name="app_name">万象（司机端）</string>
     <string name="security_block1">铅封解封</string>
     <string name="security_block2">已解封</string>
     <string name="security_about">关于</string>
